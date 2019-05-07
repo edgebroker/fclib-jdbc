@@ -1,0 +1,28 @@
+{
+  "description": "Closes a JDBC connection triggered by a message.",
+  "links": {
+    "input": [
+      {
+        "name": "In",
+        "type": "message"
+      }
+    ],
+    "output": [
+      {
+        "name": "Out",
+        "type": "message"
+      }
+    ]
+  },
+  "refs": {
+    "input": [
+      {
+        "name": "Connection",
+        "type": "jdbcconnection",
+        "mandatory": true
+      }
+    ]
+  },
+  "properties": [
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "description": "Executes a SQL query and returns the result as a memory.",
+  "links": {
+    "input": [
+      {
+        "name": "In",
+        "type": "message"
+      }
+    ],
+    "output": [
+      {
+        "name": "Out",
+        "type": "memory"
+      }
+    ]
+  },
+  "refs": {
+    "input": [
+      {
+        "name": "Connection",
+        "type": "jdbcconnection",
+        "mandatory": true
+      }
+    ]
+  },
+  "properties": [
+    {
+      "name": "query",
+      "label": "SQL Select Statement",
+      "description": "Provide the SQL Select statement. Either enter static values or use {propertyname} to use a property value of the incoming message. To use the current time in milliseconds, use [time].",
+      "type": "textarea",
+      "mandatory": true
+    }
+  ]
+}

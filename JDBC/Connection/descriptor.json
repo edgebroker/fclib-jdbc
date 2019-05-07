@@ -1,0 +1,93 @@
+{
+  "description": "Creates a new JDBC connection and provides it as a reference. The connection is either created by a message trigger or during flow init.",
+  "requirements": "Please upload the JDBC driver class jar file(s) to the flow.",
+  "links": {
+    "input": [
+      {
+        "name": "In",
+        "type": "message"
+      },
+      {
+        "name": "Keepalive",
+        "type": "timer"
+      }
+    ],
+    "output": [
+      {
+        "name": "Out",
+        "type": "message"
+      }
+    ]
+  },
+  "refs": {
+    "output": [
+      {
+        "name": "Connection",
+        "type": "jdbcconnection",
+        "mandatory": false
+      }
+    ]
+  },
+  "properties": [
+    {
+      "name": "createoninit",
+      "label": "Create during Flow Init",
+      "description": "If checked, the connection will be created during flow initialization.",
+      "type": "boolean",
+      "default": false,
+      "mandatory": false
+    },
+    {
+      "name": "driver-classname",
+      "label": "JDBC Driver Classname",
+      "description": "Provide the fully qualified class name of the JDBC driver.",
+      "type": "string",
+      "mandatory": true
+    },
+    {
+      "name": "url",
+      "label": "JDBC URL",
+      "description": "Provide the JDBC URL to connect to the database.",
+      "type": "string",
+      "mandatory": true
+    },
+    {
+      "name": "username",
+      "label": "Username",
+      "description": "Provide the user name to connect to the database.",
+      "type": "string",
+      "mandatory": false
+    },
+    {
+      "name": "password",
+      "label": "Password",
+      "description": "Provide the password to connect to the database.",
+      "type": "string",
+      "mandatory": false
+    },
+    {
+      "name": "schema",
+      "label": "Schema",
+      "description": "Some databases require a schema name. If so, provide it here.",
+      "type": "string",
+      "mandatory": false
+    },
+    {
+      "name": "keepaliveselect",
+      "label": "Keepalive Select Statement",
+      "description": "Provide a simple select statement which is executed on each timer trigger (e.g. 'select 1 from <table>').",
+      "type": "string",
+      "mandatory": false
+    },
+    {
+      "name": "requirementsfulfilled",
+      "label": "Did you upload all required jar files?",
+      "description": "Please confirm",
+      "type": "choice",
+      "choice": [
+        "yes"
+      ],
+      "mandatory": true
+    }
+  ]
+}

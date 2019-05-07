@@ -1,0 +1,72 @@
+{
+  "description": "Updates rows of a database table.",
+  "links": {
+    "input": [
+      {
+        "name": "In",
+        "type": "message"
+      }
+    ],
+    "output": [
+      {
+        "name": "Out",
+        "type": "message"
+      }
+    ]
+  },
+  "refs": {
+    "input": [
+      {
+        "name": "Connection",
+        "type": "jdbcconnection",
+        "mandatory": true
+      }
+    ]
+  },
+  "properties": [
+    {
+      "name": "tablename",
+      "label": "Table Name",
+      "description": "Provide the name of the table.",
+      "type": "string",
+      "mandatory": true
+    },
+    {
+      "name": "columnnames",
+      "label": "Provide the names of the table columns.",
+      "type": "array",
+      "description": "Column names of the table for which data is updated.",
+      "fieldtypes": [
+        "identifier"
+      ],
+      "mandatory": true
+    },
+    {
+      "name": "types",
+      "label": "Types",
+      "description": "Provide the corresponding types of the columns. Possible types are 'boolean', 'string', 'integer', 'long', 'double', 'float'",
+      "type": "array",
+      "fieldtypes": [
+        "identifier"
+      ],
+      "mandatory": true
+    },
+    {
+      "name": "values",
+      "label": "Values",
+      "description": "Provide the corresponding values to set. Either enter a static value or use {propertyname} to use a property value of the incoming message. To set the current time in milliseconds, use [time].",
+      "type": "array",
+      "fieldtypes": [
+        "string"
+      ],
+      "mandatory": true
+    },
+    {
+      "name": "condition",
+      "label": "Where Condition",
+      "description": "Provide the SQL WHERE condition. Either enter static values or use {propertyname} to use a property value of the incoming message. To use the current time in milliseconds, use [time].",
+      "type": "string",
+      "mandatory": false
+    }
+  ]
+}
