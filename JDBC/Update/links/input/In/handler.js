@@ -7,9 +7,12 @@ function handler(In) {
     }
     this.prepared = connection.prepareStatement(currentStatement);
 
-    for (var i = 0; i < this.columnnames.length; i++) {
-        convert(i + 1, subSystemTags(subRefProps(In, this.values[i])), this.types[i]);
+    for (var i = 0; i < this.columns.length; i++) {
+        var type = this.columns[i]["type"];
+        var value = this.columns[i]["value"];
+        convert(i + 1, subSystemTags(subRefProps(In, value)), type);
     }
+
     this.prepared.executeUpdate();
     this.prepared.close();
 

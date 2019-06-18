@@ -32,34 +32,34 @@
       "mandatory": true
     },
     {
-      "name": "columnnames",
-      "label": "Provide the names of the table columns.",
-      "type": "array",
-      "description": "Column names of the table for which data is set.",
-      "fieldtypes": [
-        "identifier"
-      ],
-      "mandatory": true
-    },
-    {
-      "name": "types",
-      "label": "Types",
-      "description": "Provide the corresponding types of the columns. Possible types are 'boolean', 'string', 'integer', 'long', 'double', 'float'",
-      "type": "array",
-      "fieldtypes": [
-        "identifier"
-      ],
-      "mandatory": true
-    },
-    {
-      "name": "values",
-      "label": "Values",
-      "description": "Provide the corresponding values to set. Either enter a static value or use {propertyname} to use a property value of the incoming message. To set the current time in milliseconds, use [time].",
-      "type": "array",
-      "fieldtypes": [
-        "string"
-      ],
-      "mandatory": true
+      "name": "columns",
+      "label": "Columns",
+      "description": "Provide the columns of the table for which data is set.",
+      "mandatory": true,
+      "type": "table",
+      "tablefields": [
+        {
+          "name": "name",
+          "label": "Name",
+          "description": "Name of the column.",
+          "mandatory": true,
+          "type": "identifier"
+        },
+        {
+          "name": "type",
+          "label": "Type",
+          "description": "Column value type. Possible types are 'boolean', 'string', 'integer', 'long', 'double', 'float'.",
+          "mandatory": true,
+          "type": "identifier"
+        },
+        {
+          "name": "value",
+          "label": "Value",
+          "description": "Column value to set. Either enter a static value or use {propertyname} to use a property value of the incoming message. To set the current time in milliseconds, use [time].",
+          "mandatory": true,
+          "type": "string"
+        }        
+      ]
     }
   ]
 }
