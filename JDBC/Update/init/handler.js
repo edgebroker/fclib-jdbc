@@ -20,7 +20,7 @@ function handler() {
         for (var i = 0; i < cols.length; i++) {
             if (i > 0)
                 result += ", ";
-            var name = cols[i]["name"];
+            var name = cols[i]["name"] + " = ?";
             result += name;
         }
         return result;

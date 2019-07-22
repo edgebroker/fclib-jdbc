@@ -3,7 +3,7 @@ function handler(In) {
     var connection = this.getInputReference("Connection")();
     var currentStatement = this.statement;
     if (this.props["condition"]) {
-        currentStatement += " " + subSystemTags(subRefProps(In, this.props["condition"]));
+        currentStatement += " where " + subSystemTags(subRefProps(In, this.props["condition"]));
     }
     this.prepared = connection.prepareStatement(currentStatement);
 
