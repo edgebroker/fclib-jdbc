@@ -75,7 +75,7 @@
     {
       "name": "keepaliveselect",
       "label": "Keepalive Select Statement",
-      "description": "Provide a simple select statement which is executed on each timer trigger (e.g. 'select 1 from <table>') to keep the connection open. If the connection is closed, it tries to reconnect.",
+      "description": "Provide a simple select statement which is executed on each timer trigger to keep the connection open. If the connection is closed, it tries to reconnect.",
       "type": "string",
       "mandatory": false
     },
