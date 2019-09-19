@@ -12,6 +12,7 @@ function handler() {
             self.connection = self.DriverManager.getConnection(self.props["url"]);
         else
             self.connection = self.DriverManager.getConnection(self.props["url"], self.props["username"], self.props["password"]);
+        self.connection.setAutoCommit(self.props["autocommit"]);
         if (self.props["schema"])
             self.connection.setSchema(self.props["schema"]);
         if (self.props["keepaliveselect"])
@@ -23,6 +24,18 @@ function handler() {
             self.create();
         if (self.aliveSQL === null)
             self.aliveSQL.executeQuery().close();
+    };
+
+    this.commit = function () {
+        if (self.props["autocommit"] === true)
+            throw "Connection is in auto commit state, explicit commit not allowed.";
+        self.connection.commit();
+    };
+
+    this.rollback = function () {
+        if (self.props["autocommit"] === true)
+            throw "Connection is in auto commit state, explicit rollback not allowed.";
+        self.connection.rollback();
     };
 
     function execRef() {

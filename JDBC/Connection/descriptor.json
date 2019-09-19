@@ -66,6 +66,14 @@
       "mandatory": false
     },
     {
+      "name": "autocommit",
+      "label": "Auto Commit",
+      "description": "Set to false if you use explicit commit/rollback, otherwise each change is auto committed.",
+      "type": "boolean",
+      "default": true,
+      "mandatory": false
+    },
+    {
       "name": "schema",
       "label": "Schema",
       "description": "Some databases require a schema name. If so, provide it here.",
