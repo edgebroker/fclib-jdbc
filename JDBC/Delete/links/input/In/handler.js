@@ -1,5 +1,6 @@
 function handler(In) {
     var connection = this.getInputReference("Connection")();
+    connection.checkClosed();
     var statement = "delete from " + this.props["tablename"];
     if (this.props["condition"]) {
         statement += " where " + subSystemTags(subRefProps(In, this.props["condition"]));

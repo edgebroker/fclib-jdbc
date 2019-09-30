@@ -19,11 +19,15 @@ function handler() {
             self.aliveSQL = self.connection.prepareStatement(self.props["keepaliveselect"]);
     };
 
-    this.checkAlive = function () {
+    this.checkClosed = function () {
         if (self.connection.isClosed())
             self.create();
-        if (self.aliveSQL === null)
-            self.aliveSQL.executeQuery().close();
+    };
+
+    this.checkAlive = function () {
+        self.checkClosed();
+        if (self.aliveSQL !== null)
+            self.aliveSQL.executeQuery();
     };
 
     this.commit = function () {

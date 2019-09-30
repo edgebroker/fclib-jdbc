@@ -1,4 +1,5 @@
 function handler(In) {
-    this.getInputReference("Connection")().commit();
+    var connection = this.getInputReference("Connection")().commit();
+    connection.checkClosed();
     this.executeOutputLink("Out", In);
 }

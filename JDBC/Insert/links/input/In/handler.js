@@ -1,5 +1,6 @@
 function handler(In) {
     var self = this;
+    this.getInputReference("Connection")().checkClosed();
     if (!this.prepared)
         this.prepared = this.getInputReference("Connection")().prepareStatement(this.statement);
 
