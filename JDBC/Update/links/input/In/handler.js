@@ -1,7 +1,7 @@
 function handler(In) {
     var self = this;
-    var connection = this.getInputReference("Connection")();
-    connection.checkClosed();
+    var connection = this.getInputReference("Connection")().connection;
+    this.getInputReference("Connection")().checkClosed();
     var currentStatement = this.statement;
     if (this.props["condition"]) {
         currentStatement += " where " + subSystemTags(subRefProps(In, this.props["condition"]));

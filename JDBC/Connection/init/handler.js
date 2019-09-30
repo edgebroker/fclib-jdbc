@@ -43,7 +43,7 @@ function handler() {
     };
 
     function execRef() {
-        return self.connection;
+        return self;
     }
 
     if (this.props["createoninit"])

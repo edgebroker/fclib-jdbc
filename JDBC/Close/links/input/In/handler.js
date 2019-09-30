@@ -1,4 +1,4 @@
 function handler(In) {
-    this.getInputReference("Connection")().close();
+    this.getInputReference("Connection")().connection.close();
     this.executeOutputLink("Out", In);
 }

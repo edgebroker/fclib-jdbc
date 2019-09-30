@@ -1,7 +1,7 @@
 function handler(In) {
     var UTIL = Java.type("com.swiftmq.impl.streams.comp.jdbc.Util");
-    var connection = this.getInputReference("Connection")();
-    connection.checkClosed();
+    var connection = this.getInputReference("Connection")().connection;
+    this.getInputReference("Connection")().checkClosed();
     var statement = subSystemTags(subRefProps(In, this.props["query"]));
     this.executeOutputLink("Out", UTIL.query(stream, connection, statement));
 

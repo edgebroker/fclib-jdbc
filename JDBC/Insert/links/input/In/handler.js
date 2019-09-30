@@ -2,7 +2,7 @@ function handler(In) {
     var self = this;
     this.getInputReference("Connection")().checkClosed();
     if (!this.prepared)
-        this.prepared = this.getInputReference("Connection")().prepareStatement(this.statement);
+        this.prepared = this.getInputReference("Connection")().connection.prepareStatement(this.statement);
 
     for (var i = 0; i < this.columns.length; i++) {
         var type = this.columns[i]["type"];
@@ -14,7 +14,7 @@ function handler(In) {
         this.prepared.executeUpdate();
     } catch (e) {
         try {
-            this.prepared = this.getInputReference("Connection")().prepareStatement(this.statement);
+            this.prepared = this.getInputReference("Connection")().connection.prepareStatement(this.statement);
         } catch (e) {
         }
         throw e;
