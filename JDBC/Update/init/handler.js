@@ -1,30 +1,27 @@
 function handler() {
-    this.columnnames = this.props["columnnames"];
-    this.types = this.props["types"];
-    this.values = this.props["values"];
     this.BOOLEAN = Java.type("java.lang.Boolean");
     this.INTEGER = Java.type("java.lang.Integer");
     this.LONG = Java.type("java.lang.Long");
     this.DOUBLE = Java.type("java.lang.Double");
     this.FLOAT = Java.type("java.lang.Float");
 
-    if (this.columnnames.length !== this.types.length || this.columnnames.length !== this.values.length)
-        throw "Invalid number of entries for types or values";
+    this.columns = this.props["columns"];
 
-    for (var i = 0; i < this.types.length; i++) {
-        var t = this.types[i];
-        if (!(t === 'boolean' || t === 'string' || t === 'integer' || t === 'long' || t === 'double' || t === 'float'))
-            throw "Invalid column type: " + t;
+    for (var i = 0; i < this.columns.length; i++) {
+        var type = this.columns[i]["type"];
+        if (!(type === 'boolean' || type === 'string' || type === 'integer' || type === 'long' || type === 'double' || type === 'float'))
+            throw "Invalid column type: " + type;
     }
 
-    this.statement = "update " + this.props["tablename"] + " set " + createColumns(this.columnnames) + " ";
+    this.statement = "update " + this.props["tablename"] + " set " + createColumns(this.columns) + " ";
 
     function createColumns(cols) {
         var result = "";
         for (var i = 0; i < cols.length; i++) {
             if (i > 0)
                 result += ", ";
-            result += cols[i] + " = ?";
+            var name = cols[i]["name"] + " = ?";
+            result += name;
         }
         return result;
     }

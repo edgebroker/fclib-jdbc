@@ -1,0 +1,35 @@
+{
+  "description": "Execute any SQL statement that does not return a result (like create table).",
+  "links": {
+    "input": [
+      {
+        "name": "In",
+        "type": "message"
+      }
+    ],
+    "output": [
+      {
+        "name": "Out",
+        "type": "message"
+      }
+    ]
+  },
+  "refs": {
+    "input": [
+      {
+        "name": "Connection",
+        "type": "jdbcconnection",
+        "mandatory": true
+      }
+    ]
+  },
+  "properties": [
+    {
+      "name": "statement",
+      "label": "SQL Statement(s)",
+      "description": "Provide the SQL Select statement(s). Either enter static values or use {propertyname} to use a property value of the incoming message. To use the current time in milliseconds, use [time].",
+      "type": "textarea",
+      "mandatory": true
+    }
+  ]
+}

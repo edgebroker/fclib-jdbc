@@ -66,6 +66,14 @@
       "mandatory": false
     },
     {
+      "name": "autocommit",
+      "label": "Auto Commit",
+      "description": "Set to false if you use explicit commit/rollback, otherwise each change is auto committed.",
+      "type": "boolean",
+      "default": true,
+      "mandatory": false
+    },
+    {
       "name": "schema",
       "label": "Schema",
       "description": "Some databases require a schema name. If so, provide it here.",
@@ -75,7 +83,7 @@
     {
       "name": "keepaliveselect",
       "label": "Keepalive Select Statement",
-      "description": "Provide a simple select statement which is executed on each timer trigger (e.g. 'select 1 from <table>') to keep the connection open. If the connection is closed, it tries to reconnect.",
+      "description": "Provide a simple select statement which is executed on each timer trigger to keep the connection open. If the connection is closed, it tries to reconnect.",
       "type": "string",
       "mandatory": false
     },

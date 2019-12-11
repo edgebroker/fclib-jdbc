@@ -1,15 +1,19 @@
 function handler(In) {
     var self = this;
-    var connection = this.getInputReference("Connection")();
+    var connection = this.getInputReference("Connection")().connection;
+    this.getInputReference("Connection")().checkClosed();
     var currentStatement = this.statement;
     if (this.props["condition"]) {
-        currentStatement += " " + subSystemTags(subRefProps(In, this.props["condition"]));
+        currentStatement += " where " + subSystemTags(subRefProps(In, this.props["condition"]));
     }
     this.prepared = connection.prepareStatement(currentStatement);
 
-    for (var i = 0; i < this.columnnames.length; i++) {
-        convert(i + 1, subSystemTags(subRefProps(In, this.values[i])), this.types[i]);
+    for (var i = 0; i < this.columns.length; i++) {
+        var type = this.columns[i]["type"];
+        var value = this.columns[i]["value"];
+        convert(i + 1, subSystemTags(subRefProps(In, value)), type);
     }
+
     this.prepared.executeUpdate();
     this.prepared.close();
 

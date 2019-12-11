@@ -1,8 +1,9 @@
 function handler(In) {
-    var connection = this.getInputReference("Connection")();
+    var connection = this.getInputReference("Connection")().connection;
+    this.getInputReference("Connection")().checkClosed();
     var statement = "delete from " + this.props["tablename"];
     if (this.props["condition"]) {
-        statement += " " + subSystemTags(subRefProps(In, this.props["condition"]));
+        statement += " where " + subSystemTags(subRefProps(In, this.props["condition"]));
     }
     var prepared = connection.prepareStatement(statement);
     prepared.executeUpdate();
@@ -23,5 +24,9 @@ function handler(In) {
             result = replaceAll(result, "\\{" + p.name() + "\\}", p.value().toString());
         });
         return result;
+    }
+
+    function replaceAll(str, find, replace) {
+        return str.replace(new RegExp(find, 'g'), replace);
     }
 }

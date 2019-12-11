@@ -2,8 +2,11 @@ function handler(In) {
     var UTIL = Java.type("com.swiftmq.impl.streams.comp.jdbc.Util");
     var connection = this.getInputReference("Connection")().connection;
     this.getInputReference("Connection")().checkClosed();
-    var statement = subSystemTags(subRefProps(In, this.props["query"]));
-    this.executeOutputLink("Out", UTIL.query(stream, connection, statement));
+    var sql = subSystemTags(subRefProps(In, this.props["statement"]));
+    var stmt = connection.createStatement();
+    stmt.execute(sql);
+    stmt.close();
+    this.executeOutputLink("Out", In);
 
     function subSystemTags(value) {
         var result = value;

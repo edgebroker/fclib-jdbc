@@ -1,0 +1,28 @@
+{
+  "description": "Rolls back a transaction. This can only be called if the connection is configured with auto commit off.",
+  "links": {
+    "input": [
+      {
+        "name": "In",
+        "type": "message"
+      }
+    ],
+    "output": [
+      {
+        "name": "Out",
+        "type": "message"
+      }
+    ]
+  },
+  "refs": {
+    "input": [
+      {
+        "name": "Connection",
+        "type": "jdbcconnection",
+        "mandatory": true
+      }
+    ]
+  },
+  "properties": [
+  ]
+}
