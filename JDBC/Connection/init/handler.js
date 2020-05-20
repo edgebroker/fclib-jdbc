@@ -25,6 +25,8 @@ function handler() {
     };
 
     this.checkAlive = function () {
+        if (!self.connection)
+            self.create();
         self.checkClosed();
         if (self.aliveSQL !== null)
             self.aliveSQL.executeQuery();
