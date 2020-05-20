@@ -43,6 +43,8 @@ function handler() {
     };
 
     function execRef() {
+        if (!self.connection)
+            self.create();
         return self;
     }
 
