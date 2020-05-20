@@ -1,17 +1,20 @@
 function handler() {
     var self = this;
-    this.Driver = Java.type(this.props["driver-classname"]);
-    this.DriverManager = Java.type("java.sql.DriverManager");
+    var DRIVER = Java.type(this.props["driver-classname"]);
+    var PROPS = Java.type("java.util.Properties");
+    var driver = new DRIVER();
     this.connection;
     this.aliveSQL = null;
 
     this.setOutputReference("Connection", execRef);
 
     this.create = function () {
-        if (self.props["username"])
-            self.connection = self.DriverManager.getConnection(self.props["url"]);
-        else
-            self.connection = self.DriverManager.getConnection(self.props["url"], self.props["username"], self.props["password"]);
+        var properties = new PROPS();
+        if (self.props["username"] && self.props["password"]) {
+            properties.setProperty("user", self.props["username"]);
+            properties.setProperty("password", self.props["password"]);
+        }
+        self.connection = driver.connect(self.props["url"], properties);
         self.connection.setAutoCommit(self.props["autocommit"]);
         if (self.props["schema"])
             self.connection.setSchema(self.props["schema"]);
