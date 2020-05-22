@@ -44,22 +44,22 @@ function handler(In) {
     function convert(columnNumber, value, type) {
         switch (type) {
             case 'boolean':
-                self.prepared.setBoolean(columnNumber, new self.BOOLEAN(value));
+                self.prepared.setBoolean(columnNumber, typeconvert.toBoolean(value));
                 break;
             case 'string':
                 self.prepared.setString(columnNumber, value);
                 break;
             case 'integer':
-                self.prepared.setInt(columnNumber, new self.INTEGER(value));
+                self.prepared.setInt(columnNumber, typeconvert.toInteger(value));
                 break;
             case 'long':
-                self.prepared.setLong(columnNumber, new self.LONG(value));
+                self.prepared.setLong(columnNumber, typeconvert.toLong(value));
                 break;
             case 'double':
-                self.prepared.setDouble(columnNumber, new self.DOUBLE(value));
+                self.prepared.setDouble(columnNumber, typeconvert.toDouble(value));
                 break;
             case 'float':
-                self.prepared.setFloat(columnNumber, new self.FLOAT(value));
+                self.prepared.setFloat(columnNumber, typeconvert.toFloat(value));
                 break;
         }
     }
